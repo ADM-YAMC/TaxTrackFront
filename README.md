@@ -3,6 +3,12 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
 ![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/daa7b3f6-9d9a-43fa-93d5-fe8ca048c069)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/c87a9a43-904b-45ed-b638-a3283eb021a0)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/1e9ccbb7-e5ea-4d93-81aa-87253d6cac21)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/efd18f3a-2279-4f4e-8674-5b4f10a7cb9a)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/11343aca-dec6-410b-a5fd-bb7bde056022)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/3486c628-393f-4d92-b471-df221a0aaa42)
+![image](https://github.com/ADM-YAMC/TaxTrackFront/assets/90480194/bc93a390-30a8-444a-8d81-6d9103cc5246)
 
 
 ## Development server
