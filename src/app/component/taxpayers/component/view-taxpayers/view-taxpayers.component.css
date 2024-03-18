@@ -1,0 +1,6 @@
+.card-body-custom, .mat-dialog-actions,.modal-header{
+  background: white;
+}
+.mat-dialog-content-custom{
+  overflow-x: hidden;
+}

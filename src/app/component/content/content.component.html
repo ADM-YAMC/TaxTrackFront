@@ -1,0 +1,75 @@
+<div class="container-xl mt-3">
+  <div
+    class="block w-full mb-3 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  >
+    <h5
+      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    >
+      Contribuciones
+    </h5>
+    <p class="font-normal text-gray-700 dark:text-gray-400">
+      Tu contribución es nuestro principio
+    </p>
+  </div>
+
+  <div
+    class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
+    <ul
+      class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
+      id="defaultTab"
+      data-tabs-toggle="#defaultTabContent"
+      role="tablist"
+    >
+      <li class="me-2">
+        <button
+          id="taxpayers-tab"
+          data-tabs-target="#taxpayers"
+          type="button"
+          role="tab"
+          aria-controls="taxpayers"
+          aria-selected="true"
+          class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500"
+        >
+          Contribuyentes
+        </button>
+      </li>
+      <li class="me-2">
+        <button
+          id="setting-tab"
+          data-tabs-target="#setting"
+          type="button"
+          role="tab"
+          aria-controls="setting"
+          aria-selected="false"
+          class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+        >
+          Configuración
+        </button>
+      </li>
+    </ul>
+    <div id="defaultTabContent">
+      <div
+        class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+        id="taxpayers"
+        role="tabpanel"
+        aria-labelledby="taxpayers-tab"
+      >
+        <taxpayers></taxpayers>
+      </div>
+      <div
+        class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800"
+        id="setting"
+        role="tabpanel"
+        aria-labelledby="setting-tab"
+      >
+        <h2
+          class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+        >
+          Tipos de contribuyentes
+        </h2>
+        <type-taxpayers></type-taxpayers>
+      </div>
+    </div>
+  </div>
+</div>

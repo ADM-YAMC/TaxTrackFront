@@ -1,0 +1,14 @@
+.card-body-custom, .mat-dialog-actions,.modal-header{
+  background: white;
+}
+.mat-dialog-content-custom{
+  overflow-x: hidden;
+}
+
+
+input:disabled,
+input[disabled] {
+background-color: #edf2f7;
+  color: #7e8389;
+  border-color: #cbd5e0;
+}

@@ -1,0 +1,285 @@
+<div class="modal-header border-b border-gray-200 dark:border-gray-600">
+  <h5
+    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+  >
+    {{ data.data === null ? "Nuevo" : "Editar" }} contribuyente
+  </h5>
+  <button (click)="close()" type="button" class="close" aria-label="Close">
+    <i
+      aria-hidden="true"
+      class="las la-times text-danger text-2xl font-bold"
+    ></i>
+  </button>
+</div>
+<div class="mat-dialog-content-custom">
+  <div class="card-body-custom">
+    <form class="p-4 md:p-5" [formGroup]="form">
+      <h5
+        class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Datos del contribuyente
+      </h5>
+      <hr class="h-px my-2 bg-gray-400 border-0 dark:bg-gray-700" />
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="mb-2">
+            <label
+              for="identificationType"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tipo de identificación <span class="text-danger">*</span></label
+            >
+            <select
+              id="identificationType"
+              (change)="onChangeSelect($event)"
+              formControlName="typeIdentification"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected disabled value="">Seleccione</option>
+              <option
+                value="{{ item.id }}"
+                *ngFor="let item of identificationType"
+              >
+                {{ item.text }}
+              </option>
+            </select>
+            <small
+              *ngIf="validator('identificationType')"
+              class="text-danger ms-1"
+            >
+              Este campo es requerido...
+            </small>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="mb-2">
+            <label
+              for="identification-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Identificación <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              [mask]="placeholder"
+              placeholder="{{ placeholder }}"
+              id="identification-input"
+              formControlName="rncCedula"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <small *ngIf="validator('rncCedula')" class="text-danger ms-1">
+              Este campo es requerido...
+            </small>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="mb-2">
+            <label
+              for="name-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Nombre <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="name-input"
+              placeholder="Ingrese el nombre del contribuyente..."
+              formControlName="nombre"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+            <small *ngIf="validator('nombre')" class="text-danger ms-1">
+              Este campo es requerido...
+            </small>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="mb-2">
+            <label
+              for="types"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tipo de contribuyente <span class="text-danger">*</span></label
+            >
+            <select
+              id="types"
+              formControlName="idTipoContribuyente"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected disabled value="">Seleccione</option>
+              <option
+                value="{{ item.id }}"
+                *ngFor="let item of typeTaxpayersList"
+              >
+                {{ item.nombre }}
+              </option>
+            </select>
+            <small
+              *ngIf="validator('idTipoContribuyente')"
+              class="text-danger ms-1"
+            >
+              Este campo es requerido...
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <h5
+        class="mb-2 text-1xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Comprobantes fiscales
+      </h5>
+      <hr class="h-px my-2 bg-gray-400 border-0 dark:bg-gray-700" />
+      <form [formGroup]="formCom">
+        <div class="row">
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="mb-2">
+              <label
+                for="monto-input"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Monto del Comprobantes</label
+              >
+              <input
+                type="number"
+                min="1"
+                (input)="onChangeInput($event)"
+                id="monto-input"
+                (click)="onClickInput($event)"
+                formControlName="monto"
+                placeholder="Ingrese el monto del comprobante..."
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12 col-sm-12">
+            <div class="mb-2">
+              <label
+                for="itebis-input"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Itebis 18%</label
+              >
+              <input
+                type="number"
+                formControlName="itbis18"
+                id="itebis-input"
+                placeholder="Ingrese el itebis 18%..."
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12 col-sm-12">
+            <div class="mb-2">
+              <label
+                for="name-input"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >NFC</label
+              >
+              <input
+                type="text"
+                id="name-input"
+                formControlName="ncf"
+                placeholder="Ingrese el NFC..."
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-12 col-sm-12">
+            <div class="mb-2">
+              <button
+                type="button"
+                (click)="addTax()"
+                class="lg:mt-7 md:w-full sm:w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <i class="las la-plus"></i>
+              </button>
+            </div>
+          </div>
+          <hr class="h-px my-2 bg-gray-400 border-0 dark:bg-gray-700" />
+          <div class="relative overflow-x-auto">
+            <table
+              class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+            >
+              <thead
+                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+              >
+                <tr>
+                  <th scope="col" class="px-6 py-3">Id</th>
+                  <th scope="col" class="px-6 py-3">Monto del Comprobantes</th>
+                  <th scope="col" class="px-6 py-3">Itebis 18%</th>
+                  <th scope="col" class="px-6 py-3">nfc</th>
+                  <th scope="col" class="px-6 py-3">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let item of paginatedTax; index as i"
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {{ i + 1 }}
+                  </th>
+                  <td class="px-3 py-3">
+                    {{ item.monto }}
+                  </td>
+                  <td class="px-3 py-3">{{ item.itbis18 }}</td>
+                  <td class="px-3 py-3">{{ item.ncf }}</td>
+                  <td class="px-3 py-3">
+                    <button
+                      type="button"
+                      *ngIf="item.id === 0"
+                      (click)="deleteItem(item)"
+                      class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm p-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    >
+                      <i class="las la-ban"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p
+              class="text-xl text-gray-400 pt-4 text-center"
+              *ngIf="paginatedTax.length === 0"
+            >
+              No se ha encontrado información disponible
+            </p>
+            <div>
+              <app-paginator
+                #paginator
+                [originalRecordsLength]="dataListTemp!.length"
+                [listedRecordsLength]="paginatedTax!.length"
+                [registerQuantity]="
+                  filteredList.enable && filteredList.records.length > 0
+                    ? filteredList.records!.length
+                    : dataListTemp.length
+                "
+                [records]="
+                  filteredList.enable ? filteredList.records : dataListTemp
+                "
+                (onChage)="getPaginatedRecords($event)"
+              ></app-paginator>
+            </div>
+          </div>
+        </div>
+      </form>
+    </form>
+  </div>
+</div>
+
+<div
+  class="mat-dialog-actions flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600 d-flex justify-end"
+  align="end"
+>
+  <button
+    (click)="close()"
+    type="button"
+    class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+  >
+    Cancelar
+  </button>
+  <button
+    (click)="addTaxPayers()"
+    type="button"
+    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+  >
+    {{ data.data === null ? "Guardar" : "Actualizar" }}
+  </button>
+</div>
