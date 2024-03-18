@@ -23,14 +23,17 @@ export class ErrorInterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
-          errorMessage = `Error: ${error.error.message}`;
+          this.toastr.error(
+            'Ocurrió un error al momento de cargar la información… ',
+            'Error'
+          );
         } else {
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+          this.toastr.error(
+            'Ocurrió un error al momento de cargar la información… ',
+            'Error'
+          );
         }
-        this.toastr.error(
-          'Ocurrió un error al momento de cargar la información… ',
-          'Error'
-        );
+
         return throwError(errorMessage);
       })
     );
